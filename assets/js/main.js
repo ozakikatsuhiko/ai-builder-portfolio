@@ -37,7 +37,8 @@
     if (typeof p !== 'string' || p.length === 0 || p.length > 256) return false;
     if (/[\s<>"'`]/.test(p)) return false;
     if (/[\x00-\x1f]/.test(p)) return false;
-    if (p.includes('..')) return false;
+    // Reject only `..` path segments, not ordinary filenames containing two dots.
+    if (/(^|\/)\.\.(\/|$)/.test(p)) return false;
     if (/^[a-z]+:/i.test(p)) return false;
     if (p.startsWith('//') || p.startsWith('/')) return false;
     return /^assets\/[A-Za-z0-9._\-/]+$/.test(p);
@@ -75,6 +76,11 @@
 
   // Restore focus to the element that opened the modal.
   let openerEl = null;
+  // Preserve caller's inline body overflow so we don't clobber it on close.
+  let prevBodyOverflow = '';
+
+  // Focusable elements query for trap; covers buttons/links/inputs/[tabindex>=0].
+  const FOCUSABLE_SEL = 'a[href],area[href],button:not([disabled]),input:not([disabled]),select:not([disabled]),textarea:not([disabled]),[tabindex]:not([tabindex="-1"])';
 
   function openModal(src, title, desc, alt) {
     if (!modal || !mImg || !mTitle || !mClose) return;
@@ -87,11 +93,13 @@
     mImg.loading = 'lazy';
     mImg.decoding = 'async';
     mImg.src = src;
-    mImg.alt = alt || title;
+    // Empty alt = decorative; prevents double-announcement with aria-labelledby="m-title".
+    mImg.alt = alt || '';
     mTitle.textContent = title;
     if (mDesc) mDesc.textContent = desc || '';
     modal.classList.add('open');
     modal.setAttribute('aria-hidden', 'false');
+    prevBodyOverflow = document.body.style.overflow;
     document.body.style.overflow = 'hidden';
     mClose.focus();
   }
@@ -100,7 +108,7 @@
     if (!modal) return;
     modal.classList.remove('open');
     modal.setAttribute('aria-hidden', 'true');
-    document.body.style.overflow = '';
+    document.body.style.overflow = prevBodyOverflow;
     // Free image memory so a long session does not retain N screenshots.
     if (mImg) mImg.removeAttribute('src');
     if (openerEl) {
@@ -109,16 +117,35 @@
     }
   }
 
+  // Single source of truth for opening from a card (DRY: click + keydown share this).
+  function openFromCard(card) {
+    openModal(card.dataset.img, card.dataset.title, card.dataset.desc, card.dataset.title);
+  }
+
+  // Trap Tab/Shift+Tab inside the modal so focus cannot escape to background.
+  function trapTab(e) {
+    if (e.key !== 'Tab' || !modal || !modal.classList.contains('open')) return;
+    const focusables = modal.querySelectorAll(FOCUSABLE_SEL);
+    if (focusables.length === 0) return;
+    const first = focusables[0];
+    const last  = focusables[focusables.length - 1];
+    if (e.shiftKey && document.activeElement === first) {
+      e.preventDefault();
+      last.focus();
+    } else if (!e.shiftKey && document.activeElement === last) {
+      e.preventDefault();
+      first.focus();
+    }
+  }
+
   // Card click + keyboard binding. Depends on SEL.cards
   // with data-img / data-title / data-desc.
   document.querySelectorAll(SEL.cards).forEach(card => {
-    card.addEventListener('click', () => {
-      openModal(card.dataset.img, card.dataset.title, card.dataset.desc, card.dataset.title);
-    });
+    card.addEventListener('click', () => openFromCard(card));
     card.addEventListener('keydown', e => {
       if (e.key === 'Enter' || e.key === ' ') {
         e.preventDefault();
-        openModal(card.dataset.img, card.dataset.title, card.dataset.desc, card.dataset.title);
+        openFromCard(card);
       }
     });
   });
@@ -128,7 +155,9 @@
     if (e.target === modal) closeModal();
   });
   document.addEventListener('keydown', e => {
-    if (e.key === 'Escape' && modal && modal.classList.contains('open')) closeModal();
+    if (!modal || !modal.classList.contains('open')) return;
+    if (e.key === 'Escape') closeModal();
+    else trapTab(e);
   });
 
   /* ========================================================
@@ -144,11 +173,11 @@
         }
       });
     }, { threshold: 0.12 });
-    document.querySelectorAll('.card').forEach((el, i) => {
+    document.querySelectorAll(SEL.cards).forEach((el, i) => {
       el.style.transitionDelay = (i * 80) + 'ms';
       io.observe(el);
     });
   } else {
-    document.querySelectorAll('.card').forEach(el => el.classList.add('is-visible'));
+    document.querySelectorAll(SEL.cards).forEach(el => el.classList.add('is-visible'));
   }
 })();
