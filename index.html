@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="description" content="尾崎かつ（Katsu Ozaki）のAIビルダーポートフォリオ。Claude Code・各種AIエージェントで作ったWeb・モバイル・ゲームなどの実績をまとめた公開サイト。" />
+<meta name="theme-color" content="#7EC9F5" />
+
+<meta property="og:type" content="website" />
+<meta property="og:title" content="Katsu Ozaki — AI Builder Portfolio" />
+<meta property="og:description" content="Claude Code・各種AIエージェントで作った実績ギャラリー。" />
+<meta property="og:image" content="assets/images/01_workflow.png" />
+
+<title>Katsu Ozaki — AI Builder Portfolio</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@400;500;700;800&family=Inter:wght@400;500;700;800&display=swap" rel="stylesheet" />
+
+<link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
+<link rel="stylesheet" href="assets/css/styles.css" />
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <a href="#top" class="nav__logo">
+    <svg viewBox="0 0 32 32" class="nav__logo-mark" aria-hidden="true">
+      <defs>
+        <linearGradient id="lg" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0" stop-color="#7EC9F5"/>
+          <stop offset="1" stop-color="#FF6B7A"/>
+        </linearGradient>
+      </defs>
+      <circle cx="16" cy="16" r="14" fill="url(#lg)"/>
+      <path d="M10 22 L10 10 L14 10 L14 14.5 L19 10 L24 10 L17 16 L24 22 L19 22 L14 17.5 L14 22 Z" fill="#fff"/>
+    </svg>
+    <span>Katsu<em>.</em>AI</span>
+  </a>
+  <ul class="nav__menu">
+    <li><a href="#works">Works</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#stack">Stack</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <button class="nav__toggle" aria-label="メニュー">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- HERO -->
+<header id="top" class="hero">
+  <div class="hero__bg" aria-hidden="true">
+    <svg viewBox="0 0 1440 600" preserveAspectRatio="none">
+      <path d="M0,400 C360,500 720,300 1440,420 L1440,600 L0,600 Z" fill="#DCF1FF"/>
+      <path d="M0,460 C480,560 960,360 1440,470 L1440,600 L0,600 Z" fill="#FFE4ED" opacity="0.7"/>
+    </svg>
+  </div>
+  <div class="hero__inner">
+    <span class="hero__tag">🦄 AI Builder · Tokyo</span>
+    <h1 class="hero__title">
+      思いついた瞬間に、<br/>
+      <span class="hero__title-accent">AIで形にする。</span>
+    </h1>
+    <p class="hero__lead">
+      Claude Code と各種 AI エージェントを駆使して、Web・モバイル・ゲーム・業務ツールまで、ジャンルを問わず素早く作っています。
+    </p>
+    <div class="hero__cta">
+      <a href="#works" class="btn btn--primary">実績を見る ↓</a>
+      <a href="#contact" class="btn btn--ghost">お問い合わせ</a>
+    </div>
+    <div class="hero__stats">
+      <div><strong>3+</strong><span>公開実績</span></div>
+      <div><strong>5+</strong><span>使用AIツール</span></div>
+      <div><strong>2026</strong><span>本格始動</span></div>
+    </div>
+  </div>
+</header>
+
+<!-- WORKS -->
+<section id="works" class="section">
+  <div class="section__inner">
+    <p class="section__num">01 / Works</p>
+    <h2 class="section__title">1. AI Studio Build 編</h2>
+    <p class="section__lead">AI エージェントを使って実装した、ジャンルの異なる3つのプロジェクト。カードをタップするとスクリーンショットが拡大表示されます。</p>
+
+    <div class="grid grid--works">
+
+      <article class="card" data-img="assets/images/01_workflow.png" data-title="マルチエージェント開発ワークフロー" data-desc="Claude Code のサブエージェントを連携させて、解析→構築→レビューを自動化したワークフロー基盤。">
+        <div class="card__head">
+          <div class="card__waves" aria-hidden="true"></div>
+          <div class="card__badge"><span class="uni" aria-hidden="true">🦄</span>AI Studio Build 編</div>
+          <h3 class="card__title">マルチエージェントで<br/>開発を自動化しよう</h3>
+          <span class="card__icon" aria-hidden="true">💻</span>
+          <span class="card__ribbon">AIエージェント開発コース課題</span>
+        </div>
+        <div class="card__body">
+          <p class="card__num">01_マルチエージェント開発ワークフロー</p>
+          <div class="card__tags">
+            <span class="tag">Claude Code</span>
+            <span class="tag">Python</span>
+            <span class="tag tag--pink">Workflow</span>
+          </div>
+        </div>
+      </article>
+
+      <article class="card" data-img="assets/images/02_voice_diary.png" data-title="今日のひとこと（音声日記アプリ）" data-desc="1日1回、感じたことをタップ＆録音できる iOS アプリ。Manus による自動生成。">
+        <div class="card__head">
+          <div class="card__waves" aria-hidden="true"></div>
+          <div class="card__badge"><span class="uni" aria-hidden="true">🦄</span>AI Studio Build 編</div>
+          <h3 class="card__title">音声で記録する<br/>日記アプリを作ろう</h3>
+          <span class="card__icon" aria-hidden="true">📱</span>
+          <span class="card__ribbon">AIエージェント開発コース課題</span>
+        </div>
+        <div class="card__body">
+          <p class="card__num">02_今日のひとこと — 音声日記 iOS アプリ</p>
+          <div class="card__tags">
+            <span class="tag">Manus</span>
+            <span class="tag">SwiftUI</span>
+            <span class="tag tag--pink">iOS</span>
+          </div>
+        </div>
+      </article>
+
+      <article class="card" data-img="assets/images/03_neon_tetris.png" data-title="NEON TETRIS" data-desc="サイバーパンク調 UI のブラウザ版テトリス。Claude Code で1セッション完結。">
+        <div class="card__head">
+          <div class="card__waves" aria-hidden="true"></div>
+          <div class="card__badge"><span class="uni" aria-hidden="true">🦄</span>AI Studio Build 編</div>
+          <h3 class="card__title">ネオン調 UI で<br/>ブラウザゲームを作ろう</h3>
+          <span class="card__icon" aria-hidden="true">🎮</span>
+          <span class="card__ribbon">AIエージェント開発コース課題</span>
+        </div>
+        <div class="card__body">
+          <p class="card__num">03_NEON TETRIS（ブラウザ版テトリス）</p>
+          <div class="card__tags">
+            <span class="tag">HTML5</span>
+            <span class="tag">Canvas</span>
+            <span class="tag tag--pink">Game</span>
+          </div>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about" class="section section--soft">
+  <div class="section__inner section__inner--split">
+    <div class="about__media" aria-hidden="true">
+      <div class="about__photo">
+        <span class="uni-large">🦄</span>
+      </div>
+    </div>
+    <div class="about__text">
+      <p class="section__num">02 / About</p>
+      <h2 class="section__title">尾崎 かつ <span class="about__role">/ AI Builder</span></h2>
+      <p>「思いついたものを、思いついた瞬間に作れる」状態を、AI と一緒に実現しています。</p>
+      <p>製造業のキャリアで培った業務改善の視点と、AI エージェントによる超高速プロトタイピングを組み合わせ、Web アプリ・モバイル・業務自動化ツールまで形にしてきました。</p>
+      <ul class="about__list">
+        <li>🎯 Claude Code × サブエージェントで決定論的ワークフロー設計</li>
+        <li>⚡ プロンプトから実装まで、平均1日でプロトタイプ公開</li>
+        <li>📚 学んだことを <a href="https://note.com/" target="_blank" rel="noopener">note</a> で発信中</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- STACK -->
+<section id="stack" class="section">
+  <div class="section__inner">
+    <p class="section__num">03 / Stack</p>
+    <h2 class="section__title">使用ツール・技術</h2>
+    <div class="stack">
+      <div class="stack__group">
+        <h4>AI / LLM</h4>
+        <ul>
+          <li>Claude Code</li>
+          <li>Anthropic API</li>
+          <li>Manus</li>
+          <li>Cursor</li>
+          <li>v0</li>
+        </ul>
+      </div>
+      <div class="stack__group">
+        <h4>言語 / フレームワーク</h4>
+        <ul>
+          <li>Python</li>
+          <li>TypeScript / Next.js</li>
+          <li>SwiftUI</li>
+          <li>HTML5 / CSS3 / Canvas</li>
+        </ul>
+      </div>
+      <div class="stack__group">
+        <h4>インフラ / ツール</h4>
+        <ul>
+          <li>GitHub / GitHub Pages</li>
+          <li>Vercel</li>
+          <li>Notion</li>
+          <li>Figma</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" class="section section--cta">
+  <div class="section__inner">
+    <p class="section__num">04 / Contact</p>
+    <h2 class="section__title">お仕事のご相談はこちら</h2>
+    <p class="section__lead">AIを活用した開発・自動化・教育コンテンツ作成のご相談を承っています。お気軽にどうぞ。</p>
+    <div class="contact__cta">
+      <a class="btn btn--primary btn--large" href="mailto:creatlife21@gmail.com">📧 メールで相談する</a>
+      <a class="btn btn--ghost btn--large" href="https://note.com/" target="_blank" rel="noopener">📝 note を見る</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <p>© 2026 Katsu Ozaki · built with <span class="footer__accent">Claude Code</span></p>
+  <p class="footer__small">creatlife21@gmail.com</p>
+</footer>
+
+<!-- MODAL -->
+<div class="modal" id="modal" aria-hidden="true">
+  <div class="modal__inner" role="dialog" aria-modal="true" aria-labelledby="m-title">
+    <button class="modal__close" id="m-close" aria-label="閉じる">×</button>
+    <h3 id="m-title"></h3>
+    <p id="m-desc" class="modal__desc"></p>
+    <img id="m-img" src="" alt="" />
+  </div>
+</div>
+
+<script src="assets/js/main.js" defer></script>
+</body>
+</html>
