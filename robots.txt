@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://ozakikatsuhiko.github.io/ai-builder-portfolio/sitemap.xml
